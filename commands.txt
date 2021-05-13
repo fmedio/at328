@@ -1,0 +1,6 @@
+fabrice@sunshine:~/projects/at328$ rm *.hex *.o led
+fabrice@sunshine:~/projects/at328$ avr-gcc -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o led.o led.c
+fabrice@sunshine:~/projects/at328$ avr-gcc -mmcu=atmega328p led.o -o led
+fabrice@sunshine:~/projects/at328$ avr-objcopy -O ihex -R .eeprom led led.hex
+fabrice@sunshine:~/projects/at328$ sudo avrdude -c arduino -b 57600 -P /dev/ttyUSB0 -p atmega328p -vv -U flash:w:led.hex
+
